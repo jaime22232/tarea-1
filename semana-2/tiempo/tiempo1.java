@@ -1,10 +1,13 @@
-//Imprimir números del 1 al 10
-public class dowhile1 {
+public class tiempo1 {
     public static void main(String[] args) {
-        int i = 1;
-        do {
-            System.out.println(i);
-            i++;
-        } while (i <= 10);
+        long inicio = System.nanoTime();
+
+        int suma = 0;
+        for (int i = 1; i <= 1000000; i++) {
+            suma = suma + i;
+        }
+
+        long fin = System.nanoTime();
+        System.out.println("Tiempo: " + (fin - inicio) + " ms");
     }
 }

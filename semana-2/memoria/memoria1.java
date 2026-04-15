@@ -1,10 +1,12 @@
-//Imprimir números del 1 al 10
-public class dowhile1 {
+public class memoria1 {
     public static void main(String[] args) {
-        int i = 1;
-        do {
-            System.out.println(i);
-            i++;
-        } while (i <= 10);
+        Runtime rt = Runtime.getRuntime();
+        long antes = rt.freeMemory();
+
+        String texto = "Java".repeat(1_000_000);
+        System.out.println(texto);
+
+        long despues = rt.freeMemory();
+        System.out.println("Memoria usada: " + (antes - despues) + " bytes");
     }
 }

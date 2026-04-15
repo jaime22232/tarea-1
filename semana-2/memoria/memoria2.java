@@ -1,12 +1,20 @@
-//Sumar números del 1 al 20
-public class dowhile2 {
+import java.util.Random;
+public class memoria2 {
     public static void main(String[] args) {
-        int i = 1;
-        int suma = 0;
-        do {
-            suma = suma + i;
+        Runtime rt = Runtime.getRuntime();
+        Random random = new Random() ;
+        
+        long antes = rt.freeMemory();
+
+        int[] numeros = new int[100000];
+        int i=0;
+        while(i<numeros.length)
+        {
+            numeros[i] = random.nextInt(100000);
             i++;
-        } while (i <= 20);
-        System.out.println("Suma: " + suma);
+        }
+
+        long despues = rt.freeMemory();
+        System.out.println("Memoria usada: " + (antes - despues) + " bytes");
     }
 }

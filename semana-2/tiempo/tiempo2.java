@@ -1,12 +1,13 @@
-//Sumar números del 1 al 20
-public class dowhile2 {
+public class tiempo2 {
     public static void main(String[] args) {
-        int i = 1;
-        int suma = 0;
-        do {
-            suma = suma + i;
-            i++;
-        } while (i <= 20);
-        System.out.println("Suma: " + suma);
+        long inicio = System.nanoTime();
+
+        String texto = "";
+        for (int i = 0; i < 1000; i++) {
+            texto = texto + i;
+        }
+
+        long fin = System.nanoTime();
+        System.out.println("Tiempo: " + (fin - inicio) + " ns");
     }
 }
