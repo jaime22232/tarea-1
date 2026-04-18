@@ -11,3 +11,4 @@ public class tiempo1 {
         System.out.println("Tiempo: " + (fin - inicio) + " ms");
     }
 }
+

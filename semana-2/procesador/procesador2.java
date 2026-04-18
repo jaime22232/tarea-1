@@ -2,19 +2,30 @@ import com.sun.management.OperatingSystemMXBean;
 import java.lang.management.ManagementFactory;
 
 public class procesador2 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         OperatingSystemMXBean os = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-        double antes = os.getCpuLoad() * 100;
+        
+        int nucleos = Runtime.getRuntime().availableProcessors();
+        System.out.println("Nucleos detectados: " + nucleos);
 
-        long tiempoLimite = System.currentTimeMillis() + 2000;
-        while (System.currentTimeMillis() < tiempoLimite) {
-            String texto = "Java".repeat(100_000);
-            texto.hashCode(); // Obligamos al CPU a procesar el String
+        double antes = os.getCpuLoad() * 100;
+        System.out.printf("CPU antes: %.2f%%%n", antes);
+
+        Thread[] hilos = new Thread[nucleos];
+        for (int i = 0; i < nucleos; i++) {
+            hilos[i] = new Thread(() -> {
+                long tiempoLimite = System.currentTimeMillis() + 3000; // 3 segundos
+                while (System.currentTimeMillis() < tiempoLimite) {
+                    // Operación intensiva y repetitiva
+                    String texto = "Java".repeat(10_000);
+                    texto.hashCode();
+                }
+            });
+            hilos[i].start();
         }
+        for (Thread t : hilos) t.join();
 
         double despues = os.getCpuLoad() * 100;
-
-        System.out.printf("CPU antes : %.2f %%%n", antes);
-        System.out.printf("CPU despues: %.2f %%%n", despues);
+        System.out.printf("CPU despues: %.2f%%%n", despues);
     }
 }
