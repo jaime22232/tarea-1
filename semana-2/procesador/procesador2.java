@@ -14,9 +14,8 @@ public class procesador2 {
         Thread[] hilos = new Thread[nucleos];
         for (int i = 0; i < nucleos; i++) {
             hilos[i] = new Thread(() -> {
-                long tiempoLimite = System.currentTimeMillis() + 3000; // 3 segundos
+                long tiempoLimite = System.currentTimeMillis() + 3000;
                 while (System.currentTimeMillis() < tiempoLimite) {
-                    // Operación intensiva y repetitiva
                     String texto = "Java".repeat(10_000);
                     texto.hashCode();
                 }

@@ -5,14 +5,11 @@ public class procesador1 {
     public static void main(String[] args) throws InterruptedException {
         OperatingSystemMXBean os = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
 
-        // 1. Necesitas darle tiempo al sistema para medir
         double antes = os.getCpuLoad() * 100;
         
-        // 2. Hacer el trabajo realmente intensivo
         long startTime = System.currentTimeMillis();
         double dummy = 0;
-        // Aumentamos la carga: un bucle mucho más grande y con operación matemática costosa
-        while (System.currentTimeMillis() - startTime < 2000) { // Ejecutar por 2 segundos
+        while (System.currentTimeMillis() - startTime < 2000) { 
             for (int i = 0; i < 1000000; i++) {
                 dummy += Math.sin(i) * Math.cos(i); 
             }
